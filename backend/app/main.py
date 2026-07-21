@@ -1,5 +1,7 @@
 from fastapi import FastAPI
+
 from app.core.config import settings
+from app.core.openai_client import client
 
 app = FastAPI(
     title=settings.app_name,
@@ -12,5 +14,5 @@ def root():
     return {
         "message": settings.app_name,
         "version": settings.app_version,
-        "model": settings.openai_model,
+        "client_initialized": client is not None,
     }
