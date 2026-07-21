@@ -1,4 +1,4 @@
-import Hero from '../components/Hero';
+import Hero from '../components/layout/Hero';
 import FeatureCard from '../components/home/FeatureCard';
 import ComingSoonCard from '../components/home/ComingSoonCard';
 

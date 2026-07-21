@@ -1,8 +1,16 @@
 from fastapi import FastAPI
+from app.core.config import settings
 
-app = FastAPI(title="QuickDraft AI")
+app = FastAPI(
+    title=settings.app_name,
+    version=settings.app_version,
+)
 
 
 @app.get("/")
-def health():
-    return {"status": "running", "app": "QuickDraft AI"}
+def root():
+    return {
+        "message": settings.app_name,
+        "version": settings.app_version,
+        "model": settings.openai_model,
+    }
