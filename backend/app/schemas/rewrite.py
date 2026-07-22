@@ -15,3 +15,12 @@ class RewriteRequest(BaseModel):
         description="Desired tone",
         example="Professional",
     )
+
+class RewriteResponse(BaseModel):
+    rewritten_email: str = Field(
+        ...,
+        description="AI rewritten email",
+        examples=[
+            "Dear John,\n\nUnfortunately, I won't be able to attend tomorrow's meeting as I am feeling unwell. I appreciate your understanding.\n\nBest regards,"
+        ],
+    )
