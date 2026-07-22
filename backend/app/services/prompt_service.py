@@ -12,12 +12,15 @@ class PromptService:
         system_prompt = EMAIL_REWRITE_SYSTEM_PROMPT
 
         user_prompt = f"""
-            Rewrite the following email.
+        Rewrite the following email.
 
-            Tone: {tone}
+        Requested tone:
+        {tone}
 
-            Email:
-            {email}
-            """.strip()
+        Please improve the writing while preserving the original intent and facts.
+
+        Original email:
+        {email}
+        """.strip()
 
         return system_prompt, user_prompt
