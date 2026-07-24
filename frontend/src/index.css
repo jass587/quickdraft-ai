@@ -1,1 +1,21 @@
 @import 'tailwindcss';
+
+:root {
+  font-family: Inter, system-ui, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  @apply bg-slate-50 text-slate-900;
+}
+
+button {
+  @apply cursor-pointer;
+}
