@@ -1,19 +1,23 @@
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
+
+from app.schemas.tone import Tone
 
 
 class RewriteRequest(BaseModel):
+    model_config = ConfigDict(
+        str_strip_whitespace=True,
+    )
+
     email: str = Field(
         ...,
         min_length=10,
-        max_length=5000,
-        description="Original email to rewrite",
-        example="Hi John, I can't attend tomorrow's meeting because I'm sick.",
+        max_length=10000,
+        description="Email to rewrite",
     )
 
-    tone: str = Field(
+    tone: Tone = Field(
         ...,
         description="Desired tone",
-        example="Professional",
     )
 
 class RewriteResponse(BaseModel):
