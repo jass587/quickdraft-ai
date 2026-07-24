@@ -7,6 +7,7 @@ from openai import (
 from app.core.exceptions import AIServiceError
 from app.core.config import settings
 from app.core.openai_client import client
+from app.core.logging import logger
 
 
 class AIService:
@@ -15,11 +16,15 @@ class AIService:
     @staticmethod
     def rewrite_email(system_prompt: str, user_prompt: str) -> str:
         try:
+            logger.info("Generating rewritten email")
+
             response = client.responses.create(
                 model=settings.openai_model,
                 instructions=system_prompt,
                 input=user_prompt,
             )
+
+            logger.info("Email rewritten successfully")
 
             return response.output_text.strip()
 
@@ -44,6 +49,7 @@ class AIService:
             ) from e
 
         except Exception as e:
+            logger.exception("AI service request failed")
             raise AIServiceError(
                 "An unexpected error occurred while generating the email."
             ) from e
