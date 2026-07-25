@@ -1,14 +1,18 @@
 function Navbar() {
   return (
     <header className="border-b border-slate-200 bg-white">
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-        <h1 className="text-xl font-bold text-slate-900">✨ QuickDraft AI</h1>
+      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
+        <a
+          href="/"
+          className="flex items-center gap-2 text-lg font-bold text-slate-900"
+        >
+          <span>✨</span>
+          QuickDraft AI
+        </a>
 
         <a
-          href="https://github.com/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-sm font-medium text-slate-600 hover:text-slate-900"
+          href="#"
+          className="text-sm font-medium text-slate-500 transition hover:text-slate-900"
         >
           GitHub
         </a>
