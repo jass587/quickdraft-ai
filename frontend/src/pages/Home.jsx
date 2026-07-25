@@ -1,12 +1,22 @@
+import Navbar from '../components/layout/Navbar';
+import Hero from '../components/layout/Hero';
+import Footer from '../components/layout/Footer';
+
 function Home() {
   return (
-    <main className="min-h-screen">
-      <div className="mx-auto max-w-6xl px-6 py-12">
-        <h1 className="text-4xl font-bold">QuickDraft AI</h1>
+    <>
+      <Navbar />
 
-        <p className="mt-3 text-slate-600">Rewrite your emails with AI.</p>
-      </div>
-    </main>
+      <main className="min-h-screen">
+        <div className="mx-auto max-w-6xl px-6">
+          <Hero />
+
+          {/* Email Form will be added in Card 4 */}
+        </div>
+      </main>
+
+      <Footer />
+    </>
   );
 }
 
