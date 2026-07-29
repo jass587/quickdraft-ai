@@ -8,4 +8,12 @@ const api = axios.create({
   timeout: 30000,
 });
 
+export const rewriteEmail = async (email, tone) => {
+  const response = await api.post('/rewrite', {
+    email,
+    tone,
+  });
+
+  return response.data;
+};
 export default api;
