@@ -8,10 +8,12 @@ backend/__pycache__/
 backend/**/*.py[cod]
 
 # =========================
-# Node (Frontend)
+# React (Frontend)
 # =========================
 frontend/node_modules/
 frontend/dist/
+frontend/.env
+
 
 # =========================
 # IDE
