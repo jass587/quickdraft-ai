@@ -1,6 +1,6 @@
 import CopyButton from './CopyButton';
 
-function OutputBox({ result = '' }) {
+function OutputBox({ result = '', isLoading }) {
   const hasResult = Boolean(result.trim());
 
   return (
@@ -19,7 +19,11 @@ function OutputBox({ result = '' }) {
         {hasResult && <CopyButton text={result} />}
       </div>
 
-      <div className="min-h-56 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+      <div
+        className={`min-h-56 rounded-2xl border bg-white p-6 shadow-sm transition-all duration-300 ${
+          isLoading ? 'border-indigo-200 shadow-indigo-100' : 'border-slate-200'
+        }`}
+      >
         {hasResult ? (
           <p className="whitespace-pre-wrap text-sm leading-7 text-slate-700">
             {result}

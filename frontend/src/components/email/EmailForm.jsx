@@ -39,7 +39,8 @@ function EmailForm() {
 
   return (
     <div className="mx-auto max-w-3xl space-y-8">
-      <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-8">
+      <section className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition-shadow duration-300 hover:shadow-md sm:p-8">
+        {' '}
         <div className="space-y-6">
           <EmailInput value={email} onChange={setEmail} />
 
@@ -55,7 +56,7 @@ function EmailForm() {
         </div>
       </section>
 
-      <OutputBox result={result} />
+      <OutputBox result={result} isLoading={isLoading} />
     </div>
   );
 }

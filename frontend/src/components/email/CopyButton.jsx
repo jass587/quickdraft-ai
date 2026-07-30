@@ -24,7 +24,16 @@ function CopyButton({ text }) {
       type="button"
       onClick={handleCopy}
       disabled={!text}
-      className="rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm font-medium text-slate-600 transition hover:bg-slate-50 hover:text-slate-900 disabled:cursor-not-allowed disabled:opacity-50"
+      className="
+        rounded-lg border border-slate-200
+        bg-white px-3 py-2
+        text-sm font-medium text-slate-600
+        shadow-sm
+        transition-all duration-200
+        hover:border-slate-300 hover:bg-slate-50 hover:text-slate-900
+        active:scale-95
+        disabled:cursor-not-allowed disabled:opacity-50
+      "
     >
       {copied ? 'Copied!' : 'Copy'}
     </button>
