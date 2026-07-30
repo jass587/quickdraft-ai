@@ -11,12 +11,12 @@ function Home() {
       <Navbar />
 
       <main className="flex-1">
-        <div className="mx-auto w-full max-w-5xl px-4 py-12 sm:px-6 lg:py-16">
+        <div className="mx-auto w-full max-w-5xl px-4 py-10 sm:px-6 sm:py-14 lg:py-16">
           <Hero />
 
-          <div className="mt-10">
+          <div className="mt-8 sm:mt-10">
             <EmailForm />
-            <section className="mx-auto mt-24 max-w-5xl">
+            <section className="mx-auto mt-16 max-w-5xl sm:mt-20 lg:mt-24">
               <div className="mb-10 text-center">
                 <p className="text-sm font-semibold uppercase tracking-wider text-indigo-600">
                   More tools
