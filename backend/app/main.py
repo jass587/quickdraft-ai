@@ -4,6 +4,7 @@ from app.core.config import settings
 from app.core.openai_client import client
 from fastapi.middleware.cors import CORSMiddleware
 from app.api.rewrite import router as rewrite_router
+from app.api.auth import router as auth_router
 
 app = FastAPI(
     title=settings.app_name,
@@ -19,6 +20,7 @@ app.add_middleware(
 )
 
 app.include_router(rewrite_router)
+app.include_router(auth_router)
 
 @app.get("/")
 def root():
