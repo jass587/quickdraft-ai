@@ -1,15 +1,21 @@
 from fastapi import APIRouter, HTTPException
 from app.schemas.rewrite import RewriteRequest, RewriteResponse
+from app.dependencies.auth import get_current_user
 from app.services.ai_service import AIService
 from app.services.prompt_service import PromptService
 from app.core.exceptions import AIServiceError
 from app.core.logging import logger
+from fastapi import Depends
+from app.models import User
 
 router = APIRouter(prefix="/rewrite", tags=["Rewrite"])
 
 
 @router.post("", response_model=RewriteResponse)
-def rewrite_email(request: RewriteRequest) -> RewriteResponse:
+def rewrite_email(
+    request: RewriteRequest,
+    current_user: User = Depends(get_current_user),
+) -> RewriteResponse:
     try:
         logger.info(
             "Received rewrite request with tone '%s'",
