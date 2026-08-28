@@ -9,6 +9,7 @@ from app.schemas.auth import (
     UserResponse,
 )
 from app.services.auth_service import auth_service
+from app.services.credit_service import credit_service
 from app.services.jwt_service import create_access_token
 
 
@@ -32,6 +33,11 @@ def register(
             db=db,
             email=request.email,
             password=request.password,
+        )
+    
+        credit_service.create_free_credit_account(
+            db=db,
+            user_id=user.id,
         )
 
     except ValueError as exc:

@@ -64,5 +64,55 @@ class CreditService:
 
         return account
 
+    def get_credit_account(
+        self,
+        db: Session,
+        user_id: UUID,
+    ) -> CreditAccount | None:
+        return db.scalar(
+            select(CreditAccount).where(
+                CreditAccount.user_id == user_id
+            )
+        )
+
+
+    def has_available_credit(
+        self,
+        db: Session,
+        user_id: UUID,
+    ) -> bool:
+        account = self.get_credit_account(
+            db=db,
+            user_id=user_id,
+        )
+
+        if account is None:
+            return False
+
+        return account.credits_used < account.monthly_credits
+    
+    def consume_credit(
+        self,
+        db: Session,
+        user_id: UUID,
+    ) -> CreditAccount:
+        account = self.get_credit_account(
+            db=db,
+            user_id=user_id,
+        )
+
+        if account is None:
+            raise ValueError("Credit account not found")
+
+        if account.credits_used >= account.monthly_credits:
+            raise ValueError("No credits remaining")
+
+        account.credits_used += 1
+
+        db.commit()
+        db.refresh(account)
+
+        return account
+
 
 credit_service = CreditService()
