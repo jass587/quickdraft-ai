@@ -113,6 +113,29 @@ class CreditService:
         db.refresh(account)
 
         return account
+    
+    def get_credit_summary(
+        self,
+        db: Session,
+        user_id: UUID,
+    ) -> dict[str, int]:
+        account = self.get_credit_account(
+            db=db,
+            user_id=user_id,
+        )
+
+        if account is None:
+            raise ValueError("Credit account not found")
+
+        credits_remaining = (
+            account.monthly_credits - account.credits_used
+        )
+
+        return {
+            "monthly_credits": account.monthly_credits,
+            "credits_used": account.credits_used,
+            "credits_remaining": credits_remaining,
+        }
 
 
 credit_service = CreditService()
