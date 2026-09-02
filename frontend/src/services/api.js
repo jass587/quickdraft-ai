@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { getToken } from '../utils/auth';
 
 const api = axios.create({
   baseURL: import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000',
@@ -7,6 +8,59 @@ const api = axios.create({
   },
   timeout: 30000,
 });
+
+api.interceptors.request.use(
+  (config) => {
+    const token = getToken();
+
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
+
+export const registerUser = async (email, password) => {
+  try {
+    const response = await api.post('/auth/register', {
+      email,
+      password,
+    });
+
+    return response.data;
+  } catch (error) {
+    const message =
+      error.response?.data?.detail ||
+      'Unable to create your account. Please try again.';
+
+    throw new Error(message, {
+      cause: error,
+    });
+  }
+};
+
+export const loginUser = async (email, password) => {
+  try {
+    const response = await api.post('/auth/login', {
+      email,
+      password,
+    });
+
+    return response.data;
+  } catch (error) {
+    const message =
+      error.response?.data?.detail ||
+      'Unable to log in. Please check your credentials and try again.';
+
+    throw new Error(message, {
+      cause: error,
+    });
+  }
+};
 
 export const rewriteEmail = async (email, tone) => {
   try {
@@ -34,7 +88,25 @@ export const rewriteEmail = async (email, tone) => {
       error.response.data?.detail ||
       'Unable to rewrite your email. Please try again.';
 
-    throw new Error(message, { cause: error });
+    throw new Error(message, {
+      cause: error,
+    });
+  }
+};
+
+export const getUsage = async () => {
+  try {
+    const response = await api.get('/usage');
+
+    return response.data;
+  } catch (error) {
+    const message =
+      error.response?.data?.detail ||
+      'Unable to load your usage information. Please try again.';
+
+    throw new Error(message, {
+      cause: error,
+    });
   }
 };
 
