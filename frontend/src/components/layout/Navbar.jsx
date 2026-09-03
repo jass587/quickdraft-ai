@@ -33,13 +33,22 @@ function Navbar() {
 
         <div className="flex items-center gap-4">
           {authenticated ? (
-            <button
-              type="button"
-              onClick={handleLogout}
-              className="text-sm font-medium text-slate-500 transition-colors hover:text-slate-900"
-            >
-              Logout
-            </button>
+            <>
+              <Link
+                to="/account"
+                className="text-sm font-medium text-slate-500 transition-colors hover:text-slate-900"
+              >
+                Account
+              </Link>
+
+              <button
+                type="button"
+                onClick={handleLogout}
+                className="text-sm font-medium text-slate-500 transition-colors hover:text-slate-900"
+              >
+                Logout
+              </button>
+            </>
           ) : (
             <>
               <Link
